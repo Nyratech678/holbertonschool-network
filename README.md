@@ -1,3 +1,4 @@
+"""
 sequenceDiagram
     participant Opérateur
     participant CLI
@@ -47,3 +48,4 @@ sequenceDiagram
 
     Orchestrateur->>NoSQLManager: finaliser session
     CLI-->>Opérateur: scan terminé
+"""
