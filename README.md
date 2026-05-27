@@ -1,18 +1,33 @@
+<div align="center">
+
+# 🌐 Networking Basics #0
+
+[![Holberton](https://img.shields.io/badge/Holberton-Networking%20%230-red)](https://www.holbertonschool.com)
+[![Bash](https://img.shields.io/badge/Language-Bash-4EAA25?logo=gnubash&logoColor=white)](https://www.gnu.org/software/bash/)
+[![Ubuntu](https://img.shields.io/badge/OS-Ubuntu%2022.04-E95420?logo=ubuntu&logoColor=white)](https://ubuntu.com)
+[![ShellCheck](https://img.shields.io/badge/ShellCheck-Passing-brightgreen)](https://www.shellcheck.net/)
+
+**A zero-BS, straight-to-the-point reference for the Holberton Networking Basics #0 project.**
+
+*Built with precision. No Google required.*
+
+</div>
+
 ---
 
 ## 📋 Table of Contents
 
-- <a>OSI Model</a>
-- <a>Network Types</a>
-  - <a>LAN</a>
-  - <a>WAN</a>
-  - <a>The Internet</a>
-- <a>IP Addressing</a>
-- <a>TCP &amp; UDP</a>
-- <a>Ping &amp; ICMP</a>
-- <a>Positional Parameters</a>
-- <a>Project Requirements</a>
-- <a>Useful Commands</a>
+- [OSI Model](#-osi-model)
+- [Network Types](#-network-types)
+  - [LAN](#lan-local-area-network)
+  - [WAN](#wan-wide-area-network)
+  - [The Internet](#the-internet)
+- [IP Addressing](#-ip-addressing)
+- [TCP & UDP](#-tcp--udp)
+- [Ping & ICMP](#-ping--icmp)
+- [Positional Parameters](#-bash-positional-parameters)
+- [Project Requirements](#-project-requirements)
+- [Useful Commands](#-useful-commands)
 
 ---
 
@@ -21,7 +36,7 @@
 ### What is it?
 The **Open Systems Interconnection (OSI)** model is a **conceptual framework** that standardizes network communication into 7 abstraction layers. Each layer has a specific function and communicates with the layer directly above and below it.
 
-&gt; **Key rule:** Layer *N* provides a service to Layer *N+1* and uses the service of Layer *N-1*.
+> **Key rule:** Layer *N* provides a service to Layer *N+1* and uses the service of Layer *N-1*.
 
 ### How many layers?
 **7 layers.**
@@ -39,7 +54,7 @@ The **Open Systems Interconnection (OSI)** model is a **conceptual framework** t
 | **1** | Physical | Bit | Raw bit transmission over physical medium | RJ45, USB, Bluetooth, DSL, fiber |
 
 ### Mnemonic (bottom to top)
-&gt; **P**lease **D**o **N**ot **T**hrow **S**ausage **P**izza **A**way
+> **P**lease **D**o **N**ot **T**hrow **S**ausage **P**izza **A**way
 
 ---
 
@@ -83,14 +98,14 @@ An **Internet Protocol (IP) address** is a unique numerical identifier assigned 
 | **Public IP** | Assigned by your ISP; visible on the Internet; unique globally | `203.0.113.45` |
 | **Private IP** | Used within a local network (LAN); not routable on the Internet | `192.168.1.10`, `10.0.0.5` |
 
-&gt; **Private IP ranges (IPv4):** `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`
+> **Private IP ranges (IPv4):** `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`
 
 ### What is localhost?
 **localhost** is a hostname that refers to the **current device** itself. It always resolves to the loopback IP address:
 - **IPv4:** `127.0.0.1`
 - **IPv6:** `::1`
 
-&gt; Traffic to localhost never leaves the device. It is used for testing and local development.
+> Traffic to localhost never leaves the device. It is used for testing and local development.
 
 ### What is a subnet?
 A **subnet** (subnetwork) is a logical subdivision of an IP network. It splits a larger network into smaller, more manageable segments. Subnetting is controlled by the **subnet mask** (e.g., `255.255.255.0` or `/24`), which determines which portion of the IP address represents the network and which represents the host.
@@ -113,7 +128,7 @@ A **subnet** (subnetwork) is a logical subdivision of an IP network. It splits a
 
 ---
 
-## 🔄 TCP &amp; UDP
+## 🔄 TCP & UDP
 
 ### What are the 2 mainly used data transfer protocols for IP?
 1. **TCP** — Transmission Control Protocol
@@ -142,16 +157,16 @@ A **port** is a 16-bit number (0–65535) that identifies a specific process or 
 | **HTTP** | **80** | Unencrypted web traffic |
 | **HTTPS** | **443** | Encrypted web traffic (TLS/SSL) |
 
-&gt; **Well-known ports:** 0–1023 (require root/admin privileges)
-&gt; **Registered ports:** 1024–49151
-&gt; **Dynamic/Private ports:** 49152–65535
+> **Well-known ports:** 0–1023 (require root/admin privileges)
+> **Registered ports:** 1024–49151
+> **Dynamic/Private ports:** 49152–65535
 
 ### What tool/protocol is often used to check if a device is connected to a network?
 **Ping** using the **ICMP** protocol.
 
 ---
 
-## 📡 Ping &amp; ICMP
+## 📡 Ping & ICMP
 
 ### What is ping?
 `ping` is a command-line utility that tests the reachability of a host on an IP network by sending **ICMP Echo Request** packets and waiting for **ICMP Echo Reply** packets.
@@ -322,3 +337,11 @@ nc -zv hostname 22
 ```
 
 ---
+
+<div align="center">
+
+**Made with precision. No Google. No BS.**
+
+[![Precision](https://img.shields.io/badge/Mode-Precision%20Sparring-blue)](https://github.com)
+
+</div>
