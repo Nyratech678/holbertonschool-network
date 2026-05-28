@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Update local hostname resolution entries.
+
+set -euo pipefail
+
+sed -i 's/^127\.0\.0\.1[[:space:]]\+localhost$/127.0.0.2 localhost/' /etc/hosts
+sed -i 's/^8\.8\.8\.8[[:space:]]\+facebook\.com$/8.8.8.8 facebook.com/' /etc/hosts
