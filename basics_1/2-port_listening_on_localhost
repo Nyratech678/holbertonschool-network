@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Listen on port 9 (localhost)
+
+sudo nc -l 127.0.0.1 98
