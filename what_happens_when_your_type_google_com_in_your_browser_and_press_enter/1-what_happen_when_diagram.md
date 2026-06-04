@@ -55,63 +55,6 @@ sequenceDiagram
     Internet-->>Browser: Réponse HTTPS
     Browser->>Browser: Affichage de la page
 
-# Flux de chargement d'une page web
-
-```mermaid
-%%{init: {"theme": "default"}}%%
-sequenceDiagram
-    participant Browser as Navigateur
-    participant DNS as DNS
-    participant RootTLD as Serveur racine .com
-    participant AuthDNS as DNS autoritaire
-    participant Internet
-    participant Firewall as Pare-feu
-    participant LB as Load Balancer
-    participant Web as Serveur Web
-    participant App as Serveur d'app
-    participant DB as Base de données
-
-    Note over Browser, AuthDNS: 1. Résolution DNS → IP
-    Browser->>DNS: Requête DNS pour google.com
-    DNS->>RootTLD: Qui gère .com ?
-    RootTLD-->>DNS: Serveurs de google.com
-    DNS->>AuthDNS: Demande à l'autoritaire
-    AuthDNS-->>DNS: 142.250.179.68
-    DNS-->>Browser: IP 142.250.179.68
-
-    Note over Browser, Internet: 2. Connexion TCP (SYN / SYN-ACK / ACK)
-    Browser->>Internet: TCP SYN vers 142.250.179.68:443
-    Internet-->>Browser: SYN-ACK
-    Browser-->>Internet: ACK
-
-    Note over Browser, Internet: 3. Handshake TLS (HTTPS)
-    Browser->>Internet: Échange de certificat et clés
-    Internet-->>Browser: Session chiffrée établie
-
-    Note over Internet, Firewall: 4. Filtrage pare-feu
-    Internet->>Firewall: Paquet chiffré (port 443)
-    Firewall-->>LB: Paquet autorisé
-
-    Note over LB: 5. Répartition de charge (SSL offload)
-    LB->>LB: Déchiffrement SSL
-    LB->>Web: Requête HTTP interne
-
-    Note over Web, App: 6. Reverse proxy → application
-    Web->>App: Transmet la requête
-
-    Note over App, DB: 7. Logique métier & base de données
-    App->>DB: Requête SQL
-    DB-->>App: Données
-    App->>App: Génération de la page HTML
-
-    Note over App, Web: 8. Réponse et rendu final
-    App-->>Web: HTML
-    Web-->>LB: Contenu
-    LB-->>Firewall: Paquet (re)chiffré
-    Firewall-->>Internet: Transmission
-    Internet-->>Browser: Réponse HTTPS
-    Browser->>Browser: Affichage de la page
-
 ## Explication détaillée du flux
 
 1. **Résolution DNS**  
