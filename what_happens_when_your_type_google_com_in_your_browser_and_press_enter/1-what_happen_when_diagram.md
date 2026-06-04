@@ -1,58 +1,54 @@
-"""
-    %%{init: {"theme": "default"}}%%
-    sequenceDiagram
+sequenceDiagram
     participant Browser
     participant DNS
     participant RootTLD
     participant AuthDNS
     participant Internet
-    participant Firewall
-    participant LB as LoadBalancer
-    participant Web as WebServer
-    participant App as AppServer
-    participant DB as Database
+    participant Firewall as Pare-feu
+    participant LB as Load Balancer
+    participant Web as Serveur Web
+    participant App as Serveur d'app
+    participant DB as Base de données
 
-    Note over Browser,AuthDNS: 1. DNS — trouve l'adresse IP
+    Note over Browser, AuthDNS: 1. Résolution DNS → IP
     Browser->>DNS: Requête DNS pour google.com
     DNS->>RootTLD: Qui gère .com ?
     RootTLD-->>DNS: Serveurs de google.com
     DNS->>AuthDNS: Demande à l'autoritaire
     AuthDNS-->>DNS: 142.250.179.68
-    DNS-->>Browser: Renvoie l'IP
+    DNS-->>Browser: IP 142.250.179.68
 
-    Note over Browser: 2. Connexion TCP (SYN / SYN-ACK / ACK)
+    Note over Browser, Internet: 2. Connexion TCP (SYN / SYN-ACK / ACK)
     Browser->>Internet: TCP SYN vers 142.250.179.68:443
     Internet-->>Browser: SYN-ACK
     Browser-->>Internet: ACK
 
     Note over Browser,Internet: 3. TLS (HTTPS) — chiffrement
     Browser->>Internet: Handshake TLS (certificat, échange de clés)
-    Internet-->>Browser: Session sécurisée établie
 
-    Note over Internet,Firewall: 4. Passage par pare-feu
+    Note over Internet, Firewall: 4. Filtrage pare-feu
     Internet->>Firewall: Paquet chiffré (port 443)
     Firewall-->>LB: Paquet autorisé
 
-    Note over LB: 5. Load balancer (choix du serveur)
-    LB->>LB: Déchiffre si SSL termination
+    Note over LB: 5. Répartition de charge (SSL offload)
+    LB->>LB: Déchiffrement SSL
     LB->>Web: Requête HTTP interne
 
-    Note over Web,App: 6. Web server → reverse proxy
+    Note over Web,App: 6. Web server -> reverse proxy
     Web->>App: Transmet la requête
 
-    Note over App,DB: 7. Application récupère les données
-    App->>DB: Requête base de données
-    DB-->>App: Résultat
-    App->>App: Génère la page HTML
+    Note over App, DB: 7. Logique métier & base de données
+    App->>DB: Requête SQL
+    DB-->>App: Données
+    App->>App: Génération de la page HTML
 
-    Note over App,Web: 8. Réponse et rendu
-    App-->>Web: HTML généré
-    Web-->>LB: Renvoie le contenu
+    Note over App, Web: 8. Réponse et rendu final
+    App-->>Web: HTML
+    Web-->>LB: Contenu
     LB-->>Firewall: Paquet (re)chiffré
     Firewall-->>Internet: Transmission
     Internet-->>Browser: Réponse HTTPS
     Browser->>Browser: Affiche la page
-"""
 
 Explication
 1) DNS : ton navigateur demande l'IP correspondant à google.com.
