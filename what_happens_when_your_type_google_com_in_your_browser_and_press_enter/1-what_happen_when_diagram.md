@@ -54,6 +54,7 @@ sequenceDiagram
     Firewall-->>Internet: Transmission
     Internet-->>Browser: Réponse HTTPS
     Browser->>Browser: Affichage de la page
+``` 
 
 ## Explication détaillée du flux
 
