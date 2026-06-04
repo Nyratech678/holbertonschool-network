@@ -1,8 +1,12 @@
+# Flux de chargement d'une page web
+
+'''mermaid
+%%{init: {"theme": "default"}}%%
 sequenceDiagram
-    participant Browser
-    participant DNS
-    participant RootTLD
-    participant AuthDNS
+    participant Browser as Navigateur
+    participant DNS as DNS
+    participant RootTLD as Serveur racine .com
+    participant AuthDNS as DNS autoritaire
     participant Internet
     participant Firewall as Pare-feu
     participant LB as Load Balancer
@@ -23,8 +27,9 @@ sequenceDiagram
     Internet-->>Browser: SYN-ACK
     Browser-->>Internet: ACK
 
-    Note over Browser,Internet: 3. TLS (HTTPS) — chiffrement
-    Browser->>Internet: Handshake TLS (certificat, échange de clés)
+    Note over Browser, Internet: 3. Handshake TLS (HTTPS)
+    Browser->>Internet: Échange de certificat et clés
+    Internet-->>Browser: Session chiffrée établie
 
     Note over Internet, Firewall: 4. Filtrage pare-feu
     Internet->>Firewall: Paquet chiffré (port 443)
@@ -34,7 +39,7 @@ sequenceDiagram
     LB->>LB: Déchiffrement SSL
     LB->>Web: Requête HTTP interne
 
-    Note over Web,App: 6. Web server -> reverse proxy
+    Note over Web, App: 6. Reverse proxy → application
     Web->>App: Transmet la requête
 
     Note over App, DB: 7. Logique métier & base de données
@@ -48,7 +53,8 @@ sequenceDiagram
     LB-->>Firewall: Paquet (re)chiffré
     Firewall-->>Internet: Transmission
     Internet-->>Browser: Réponse HTTPS
-    Browser->>Browser: Affiche la page
+    Browser->>Browser: Affichage de la page
+    '''
 
 Explication
 1) DNS : ton navigateur demande l'IP correspondant à google.com.
