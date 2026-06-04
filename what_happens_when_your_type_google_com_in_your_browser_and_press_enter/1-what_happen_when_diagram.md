@@ -54,7 +54,7 @@ sequenceDiagram
     Firewall-->>Internet: Transmission
     Internet-->>Browser: Réponse HTTPS
     Browser->>Browser: Affichage de la page
-    '''
+'''
 
 Explication
 1) DNS : ton navigateur demande l'IP correspondant à google.com.
