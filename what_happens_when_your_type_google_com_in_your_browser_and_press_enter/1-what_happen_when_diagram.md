@@ -48,7 +48,7 @@ sequenceDiagram
     Internet-->>Browser: Réponse HTTPS
     Browser->>Browser: Affiche la page
 
-Explication courte (chaque étape en 1 phrase)
+Explication
 1) DNS : ton navigateur demande l'IP correspondant à google.com.
 2) TCP : ton navigateur établit une connexion avec cette IP.
 3) TLS : le navigateur et le serveur négocient un chiffrement.
@@ -57,8 +57,3 @@ Explication courte (chaque étape en 1 phrase)
 6) Reverse proxy : le serveur web transmet la requête à l'application.
 7) Application : l'application consulte la base de données et construit la page.
 8) Retour : la page traverse le chemin inverse et ton navigateur l'affiche.
-
-Notes pour rendre le schéma accessible :
-- Utilise des phrases courtes et des verbes simples.
-- Chaque étape correspond à une seule action claire.
-- Si tu veux, je peux transformer ceci en une image SVG ou en une fiche imprimable.
